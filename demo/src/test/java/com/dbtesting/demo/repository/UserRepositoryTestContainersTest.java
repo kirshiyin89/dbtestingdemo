@@ -18,7 +18,7 @@ import java.util.List;
 @Sql(scripts = "/insert-data.sql")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class UserRepositoryTestContainersTest {
-    
+
     @BeforeEach
     void init() {
         new MySQLContainer("mysql")
@@ -33,10 +33,9 @@ class UserRepositoryTestContainersTest {
 
     @Test
     void findUserByEmailTest() {
-        List<User> users = (List<User>) userRepository.findAll();
-        Assertions.assertFalse(users.isEmpty());
-        Assertions.assertTrue(users.size() == 2);
-        Assertions.assertEquals("Kirshi", users.stream().filter(user -> user.getEmail().equals("kirshi@example.org")).findFirst().get().getName());
+        User user = userRepository.findUserByEmail("kirshi@example.org");
+        Assertions.assertNotNull(user);
+        Assertions.assertEquals("Kirshi", user.getName());
     }
 
     @Test
