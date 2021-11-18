@@ -1,1 +1,10 @@
+CREATE TABLE IF NOT EXISTS USER (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    NAME VARCHAR(255) NOT NULL,
+        ROLE VARCHAR(255) NOT NULL,
+    EMAIL VARCHAR(255) NOT NULL
+);
+
 INSERT INTO USER(id, NAME, ROLE, EMAIL) VALUES ('1', 'Kirshi', 'developer', 'kirshi@example.org');
+
+INSERT INTO USER(id, NAME, ROLE, EMAIL) VALUES ('2', 'John', 'tester', 'john@example.org');
