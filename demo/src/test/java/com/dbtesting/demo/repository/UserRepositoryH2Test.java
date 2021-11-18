@@ -1,31 +1,17 @@
 package com.dbtesting.demo.repository;
 
 import com.dbtesting.demo.entity.User;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
-import java.util.Collection;
+import java.util.List;
 
-import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TEST_METHOD;
+public interface UserRepository extends CrudRepository<User, Long> {
 
-@DataJpaTest
-@ExtendWith(SpringExtension.class)
-@Sql(scripts = "/insert-data.sql")
-@Sql(scripts = "/cleanup-data.sql", executionPhase = AFTER_TEST_METHOD)
-public class UserRepositoryH2Test {
+    @Query("SELECT u FROM User u where u.email = :email")
+    User findUserByEmail(@Param("email") String email);
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Test
-    void findUserByEmailTest() {
-        Collection<User> users = userRepository.findUserByEmail("kirshi@example.org");
-        Assertions.assertFalse(users.isEmpty());
-        Assertions.assertEquals("Kirshi", users.stream().filter(user -> user.getEmail().equals("kirshi@example.org")).findFirst().get().getName());
-    }
+    @Query("SELECT u FROM User u where u.role = :role")
+    List<User> findUsersByRole(@Param("role") String role);
 }
