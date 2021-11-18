@@ -9,6 +9,9 @@ import java.util.List;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
-    @Query("SELECT u FROM User u where u.email LIKE :email")
-    List<User> findUserByEmail(@Param("email") String email);
+    @Query("SELECT u FROM User u where u.email = :email")
+    User findUserByEmail(@Param("email") String email);
+
+    @Query("SELECT u FROM User u where u.role = :role")
+    List<User> findUsersByRole(@Param("role") String role);
 }
