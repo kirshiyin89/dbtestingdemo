@@ -2,7 +2,7 @@ package com.dbtesting.demo.repository;
 
 import com.dbtesting.demo.entity.User;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -19,8 +19,8 @@ import java.util.List;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class UserRepositoryTestContainersTest {
 
-    @BeforeEach
-    void init() {
+    @BeforeAll
+    static void init() {
         new MySQLContainer("mysql")
                 .withDatabaseName("test")
                 .withUsername("usr")
