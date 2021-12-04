@@ -8,10 +8,11 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface UserRepository extends CrudRepository<User, Long> {
+    
+    @Query("SELECT u FROM User  u where length(u.name) > :number")
+    List<User> findUsersByNameLongerThan(@Param("number") int number);   
 
-    @Query("SELECT u FROM User u where u.email = :email AND u.age > 18")
-    User findAdultUserByEmail(@Param("email") String email);
+    User findByEmail(String email);
 
-    @Query("SELECT u FROM User u where u.role = :role")
-    List<User> findUsersByRole(@Param("role") String role);
+    List<User> findByRole(String role);
 }
