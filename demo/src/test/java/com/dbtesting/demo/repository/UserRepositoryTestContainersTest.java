@@ -32,15 +32,21 @@ class UserRepositoryTestContainersTest {
     private UserRepository userRepository;
 
     @Test
+    void findUsersByNameLongerThanTest() {
+        List<User> users = userRepository.findUsersByNameLongerThan(4);
+        Assertions.assertEquals("Kirshi", users.stream().filter(user -> user.getName()).findFirst());
+    }    
+
+    @Test
     void findUserByEmailTest() {
-        User user = userRepository.findAdultUserByEmail("kirshi@example.org");
+        User user = userRepository.findByEmail("kirshi@example.org");
         Assertions.assertNotNull(user);
         Assertions.assertEquals("Kirshi", user.getName());
     }
 
     @Test
     void findUsersByRoleTest() {
-        List<User> developers = userRepository.findUsersByRole("tester");
+        List<User> developers = userRepository.findByRole("developer");
         Assertions.assertFalse(developers.isEmpty());
     }
 
