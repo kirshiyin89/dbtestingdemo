@@ -24,7 +24,7 @@ public class UserRepositoryH2Test {
 
     @Test
     void findUserByEmailTest() {
-        User user = userRepository.findUserByEmail("kirshi@example.org");
+        User user = userRepository.findAdultUserByEmail("kirshi@example.org");
         Assertions.assertNotNull(user);
         Assertions.assertEquals("Kirshi", user.getName());
     }
