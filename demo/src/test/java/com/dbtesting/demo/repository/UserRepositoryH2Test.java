@@ -15,7 +15,7 @@ import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TES
 
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
-@Sql(scripts = "/insert-data.sql")
+@Sql(scripts = "/create-data.sql")
 @Sql(scripts = "/cleanup-data.sql", executionPhase = AFTER_TEST_METHOD)
 public class UserRepositoryH2Test {
 
