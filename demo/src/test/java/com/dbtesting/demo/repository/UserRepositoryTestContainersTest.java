@@ -15,7 +15,7 @@ import java.util.List;
 
 @Testcontainers
 @DataJpaTest
-@Sql(scripts = "/insert-data.sql")
+@Sql(scripts = "/create-data.sql")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class UserRepositoryTestContainersTest {
 
