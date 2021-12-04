@@ -25,7 +25,7 @@ public class UserRepositoryH2Test {
     @Test
     void findUsersByNameLongerThanTest() {
         List<User> users = userRepository.findUsersByNameLongerThan(4);
-        Assertions.assertEquals("Kirshi", users.stream().filter(user -> user.getName()).findFirst());
+        Assertions.assertEquals("Kirshi", users.stream().findAny().get().getName());
     }    
 
     @Test
